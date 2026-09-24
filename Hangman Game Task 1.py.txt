@@ -1,0 +1,64 @@
+import random
+
+words = ["python", "computer", "coding", "developer", "keyboard"]
+
+word = random.choice(words)
+
+guessed = []
+wrong = 0
+max_wrong = 6
+
+print("HANGMAN GAME")
+print("Guess the word one letter at a time.")
+print("You have 6 wrong guesses.")
+
+while wrong < max_wrong:
+
+    display = ""
+
+    for letter in word:
+        if letter in guessed:
+            display = display + letter + " "
+        else:
+            display = display + "_ "
+
+    print("\nWord:", display)
+
+    if "_" not in display:
+        print("Congratulations! You won!")
+        print("The word was:", word)
+        break
+
+    guess = input("Enter a letter: ").lower()
+
+    if len(guess) != 1 or not guess.isalpha():
+        print("Please enter only one letter.")
+        continue
+
+    if guess in guessed:
+        print("You already guessed this letter.")
+        continue
+
+    guessed.append(guess)
+
+    if guess in word:
+        print("Correct guess!")
+    else:
+        wrong = wrong + 1
+        print("Wrong guess!")
+        print("Wrong guesses:", wrong, "/", max_wrong)
+
+if wrong == max_wrong:
+    print("\nGame Over!")
+    print("The correct word was:", word)
+
+print("Thank you for playing!")
+
+
+
+
+
+
+
+
+
